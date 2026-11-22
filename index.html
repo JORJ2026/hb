@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10130f">
+  <title>SNES Shelf</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#library" aria-label="SNES Shelf home"><span class="brand-mark">S</span><span>SNES <b>SHELF</b></span></a>
+      <span class="system-label"><i></i> 16-BIT LIBRARY</span>
+    </header>
+
+    <section id="library" class="library-view">
+      <div class="intro"><div class="eyebrow">YOUR CARTRIDGES <span>·</span> 02</div><h1>Pick a game.</h1></div>
+      <div class="game-grid">
+        <button class="game-card woods" data-rom="uploads/Lantern_Woods_plus_Harvest_Moon.sfc" data-title="Lantern Woods + Harvest Moon" aria-label="Play Lantern Woods plus Harvest Moon">
+          <span class="card-art art-woods"><span class="moon"></span><span class="tree tree-a"></span><span class="tree tree-b"></span><span class="path"></span><span class="pixel-star star-a">✦</span><span class="pixel-star star-b">✦</span><span class="art-caption">LANTERN<br>WOODS</span></span>
+          <span class="card-info"><span class="game-title">Lantern Woods <span class="plus">+</span><br>Harvest Moon</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card homebrew" data-rom="uploads/homebrew_bundle.sfc" data-title="Homebrew Bundle" aria-label="Play Homebrew Bundle">
+          <span class="card-art art-homebrew"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="cart">HB</span><span class="art-caption">HOMEBREW<br>BUNDLE</span><span class="pixel-star hb-star">✦</span></span>
+          <span class="card-info"><span class="game-title">Homebrew<br>Bundle</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+      </div>
+      <div class="bottom-note"><span class="tiny-dot"></span> READY TO PLAY</div>
+    </section>
+
+    <section id="player" class="player-view" hidden>
+      <div class="player-bar"><button id="back" class="back-button"><span>←</span> LIBRARY</button><span id="playing-title" class="playing-title"></span><button id="full" class="full-button" aria-label="Fullscreen">⛶</button></div>
+      <div class="screen-frame"><div class="screen-glow"></div><div id="game-container"><div class="starting"><span class="loader"></span><span>WAKING THE CARTRIDGE…</span></div><iframe id="emulator" title="SNES game" allow="autoplay; fullscreen; gamepad"></iframe></div></div>
+      <div class="player-foot"><span><kbd>CLICK</kbd> GAME TO FOCUS</span><span>SNES · EMULATORJS</span></div>
+    </section>
+  </main>
+</body>
+</html>
