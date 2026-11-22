@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
   <meta name="theme-color" content="#10130f">
   <title>SNES Shelf</title>
   <link rel="stylesheet" href="style.css">
@@ -33,7 +33,26 @@
     <section id="player" class="player-view" hidden>
       <div class="player-bar"><button id="back" class="back-button"><span>←</span> LIBRARY</button><span id="playing-title" class="playing-title"></span><button id="full" class="full-button" aria-label="Fullscreen">⛶</button></div>
       <div class="screen-frame"><div class="screen-glow"></div><div id="game-container"><div class="starting"><span class="loader"></span><span>WAKING THE CARTRIDGE…</span></div><iframe id="emulator" title="SNES game" allow="autoplay; fullscreen; gamepad"></iframe></div></div>
-      <div class="player-foot"><span><kbd>CLICK</kbd> GAME TO FOCUS</span><span>SNES · EMULATORJS</span></div>
+      <section class="controller" aria-label="SNES controller">
+        <div class="shoulders"><button class="shoulder" data-key="q" aria-label="L shoulder"><span>L</span></button><button class="shoulder" data-key="w" aria-label="R shoulder"><span>R</span></button></div>
+        <div class="controller-face">
+          <div class="dpad" aria-label="Directional pad">
+            <button class="dpad-key up" data-key="ArrowUp" aria-label="Up">▲</button>
+            <button class="dpad-key left" data-key="ArrowLeft" aria-label="Left">◀</button>
+            <button class="dpad-key right" data-key="ArrowRight" aria-label="Right">▶</button>
+            <button class="dpad-key down" data-key="ArrowDown" aria-label="Down">▼</button>
+            <span class="dpad-center"></span>
+          </div>
+          <div class="center-controls"><div class="system-buttons"><button data-key="Shift" aria-label="Select">SELECT</button><button data-key="Enter" aria-label="Start">START</button></div><span class="controller-wordmark">SUPER NINTENDO</span></div>
+          <div class="face-buttons" aria-label="Action buttons">
+            <button class="face-button button-x" data-key="s" aria-label="X">X</button>
+            <button class="face-button button-y" data-key="a" aria-label="Y">Y</button>
+            <button class="face-button button-a" data-key="x" aria-label="A">A</button>
+            <button class="face-button button-b" data-key="z" aria-label="B">B</button>
+          </div>
+        </div>
+      </section>
+      <div class="player-foot"><span><kbd>TOUCH</kbd> HOLD TO PLAY</span><span>SNES · EMULATORJS</span></div>
     </section>
   </main>
 </body>
