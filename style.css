@@ -7,3 +7,85 @@
 }
 @media(max-width:380px){.game-grid{grid-template-columns:1fr}.card-art{height:210px}.game-card{max-width:100%}.library-view{padding-top:38px}.controller{padding:29px 10px 17px}.controller-face{grid-template-columns:1fr 1fr 1fr;gap:0}.dpad,.face-buttons{transform:scale(.88)}.face-buttons{transform:scale(.88) rotate(-22deg)}.system-buttons{gap:7px}.system-buttons button{width:42px}}
 @media(min-width:621px){.controller{position:relative;width:min(100%,620px);margin:32px auto 0;padding:34px 30px 22px;border:1px solid #d4d0c2;border-radius:35px 35px 52px 52px;background:linear-gradient(150deg,#d8d5ca,#aaa99f);box-shadow:0 16px 36px #0008,inset 0 2px 4px #fff9,inset 0 -6px 12px #77766b66;color:#4d4d47}.controller:before{content:"";position:absolute;inset:7px 16px auto;height:1px;background:#fff9}.shoulders{position:absolute;left:28px;right:28px;top:-12px;display:flex;justify-content:space-between}.shoulder{width:90px;height:26px;border:1px solid #8c8b83;border-radius:8px;background:linear-gradient(#c7c4b9,#99988f);color:#626159;font:700 11px var(--mono);box-shadow:0 3px 2px #0005,inset 0 1px #fff;touch-action:none}.controller-face{display:grid;grid-template-columns:1fr 1.2fr 1fr;align-items:center;min-height:132px;gap:10px}.dpad,.face-buttons{position:relative;width:122px;height:122px;margin:auto;touch-action:none}.dpad-key{position:absolute;width:38px;height:41px;padding:0;border:0;background:linear-gradient(135deg,#55565a,#34353a);color:#bdbdc0;font-size:18px;text-shadow:0 1px 2px #000;touch-action:none}.dpad-key.up{left:42px;top:0;border-radius:5px 5px 0 0}.dpad-key.down{left:42px;bottom:0;border-radius:0 0 5px 5px}.dpad-key.left{left:0;top:41px;border-radius:5px 0 0 5px}.dpad-key.right{right:0;top:41px;border-radius:0 5px 5px 0}.dpad-center{position:absolute;left:42px;top:41px;width:38px;height:40px;background:#393a3e;pointer-events:none}.center-controls{display:flex;flex-direction:column;align-items:center;gap:17px}.system-buttons{display:flex;gap:14px;transform:rotate(-22deg)}.system-buttons button{width:58px;height:16px;border:1px solid #77766f;border-radius:9px;background:linear-gradient(#88877e,#6d6c65);color:#e0dfd3;font:6px var(--mono);box-shadow:0 2px 2px #0004;touch-action:none}.controller-wordmark{font:700 8px var(--mono);color:#74736b;letter-spacing:.08em}.face-buttons{border-radius:50%;background:#aaa89f66;box-shadow:inset 0 1px 3px #7775;transform:rotate(-22deg)}.face-button{position:absolute;width:46px;height:46px;border:1px solid #862449;border-radius:50%;background:linear-gradient(145deg,#ed5d81,#b82153 75%);color:#ffe4eb;font-weight:700;font-size:16px;text-shadow:0 1px #8b1741;box-shadow:0 4px 0 #861d43,0 5px 6px #5556,inset 0 2px 3px #ffffff70;touch-action:none}.button-x{left:38px;top:0}.button-y{left:0;top:38px}.button-a{right:0;top:38px}.button-b{left:38px;bottom:0}.pressed{filter:brightness(1.22)}}
+
+/* GBA cartridges */
+.gba-art{isolation:isolate;background:linear-gradient(180deg,#405b63 0%,#769b8a 55%,#d0b77d 100%)}
+.gba-art:before{content:"";position:absolute;inset:0;opacity:.34;background-image:radial-gradient(#fff 1px,transparent 1.5px);background-size:23px 23px;mask-image:linear-gradient(180deg,#000,transparent 75%)}
+.gba-sun{position:absolute;z-index:-1;width:72px;height:72px;right:18%;top:16%;border-radius:50%;background:#f5daa0;box-shadow:0 0 44px #ffe5a566}
+.gba-hills{position:absolute;z-index:-1;left:-10%;right:-10%;bottom:-34%;height:78%;background:#263c36;clip-path:polygon(0 35%,17% 14%,31% 39%,51% 3%,72% 38%,86% 17%,100% 37%,100% 100%,0 100%)}
+.gba-hills:after{content:"";position:absolute;inset:22% 0 0;background:#172b28;clip-path:polygon(0 32%,24% 0,43% 29%,67% 2%,100% 34%,100% 100%,0 100%)}
+.gba-emblem{position:absolute;right:23%;top:21%;width:66px;height:66px;display:grid;place-items:center;border:1px solid #fff5d377;border-radius:50%;color:#fff0cc;font:600 30px var(--sans);text-shadow:0 2px 9px #3d342f;transform:rotate(-8deg)}
+.gba-art .art-caption{z-index:1;bottom:21px;color:#fff0ca;font-size:10px;letter-spacing:.18em}
+.gba-wildhaven .gba-art{background:linear-gradient(180deg,#6a6578 0%,#a19aab 48%,#d6ad83 100%)}
+.gba-wildhaven .gba-hills{background:#4c5756}.gba-wildhaven .gba-hills:after{background:#2f4140}
+.gba-wildwood .gba-art{background:linear-gradient(180deg,#344d49 0%,#739079 52%,#d2ad77 100%)}
+.gba-wildwood .gba-hills{background:#294b3a}.gba-wildwood .gba-hills:after{background:#1d382d}
+.gba-hour .gba-art{background:linear-gradient(180deg,#413b51 0%,#9a6661 55%,#e2a75f 100%)}
+.gba-hour .gba-sun{background:#f3c26f;box-shadow:0 0 55px #ffb86088}.gba-hour .gba-emblem{border-radius:50%;font-size:39px}
+.gba-hour .gba-hills{background:#594044}.gba-hour .gba-hills:after{background:#382d39}
+.gba-golf .gba-art{background:linear-gradient(180deg,#86b8c2 0%,#cee0bd 47%,#69a36b 48%,#38744e 100%)}
+.gba-golf .gba-sun{width:47px;height:47px;background:#fff0bf}.gba-golf .gba-emblem{color:#fff6e4;border-color:#ffffff77;font-size:33px}
+.gba-golf .gba-hills{background:#548c58;clip-path:ellipse(78% 68% at 57% 100%)}.gba-golf .gba-hills:after{background:#34704d;clip-path:ellipse(70% 68% at 8% 100%)}
+.player-view.gba .button-x,.player-view.gba .button-y{display:none}
+.player-view.gba .button-a{right:0;top:38px;left:auto}
+.player-view.gba .button-b{left:0;top:38px;bottom:auto}
+@media(min-width:621px){.player-view.gba .button-a{right:0;top:38px}.player-view.gba .button-b{left:0;top:38px;bottom:auto}}
+@media(max-width:620px){.player-view.gba .button-a{right:0;top:35px;left:auto}.player-view.gba .button-b{left:0;top:35px;bottom:auto}}
+
+/* Newly added SNES cartridges */
+.snes-art{isolation:isolate;background:linear-gradient(150deg,#3e5d6c,#21283e 62%,#151c28)}
+.snes-art:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.45;background-image:radial-gradient(#fff9 1px,transparent 1.5px);background-size:27px 27px}
+.snes-symbol{position:absolute;z-index:1;top:18%;right:22%;width:84px;height:84px;border:1px solid #fff7;border-radius:50%;display:grid;place-items:center;color:#fff2d5;font:500 50px var(--sans);text-shadow:0 3px 18px #fff8;box-shadow:0 0 45px #d6d5ff22}
+.snes-shapes{position:absolute;z-index:-1;left:-8%;right:-8%;bottom:-30%;height:75%;background:#263748;clip-path:polygon(0 38%,20% 15%,36% 40%,53% 4%,70% 34%,88% 12%,100% 40%,100% 100%,0 100%)}
+.snes-shapes:after{content:"";position:absolute;inset:29% 0 0;background:#17242d;clip-path:polygon(0 20%,27% 0,44% 31%,68% 8%,100% 35%,100% 100%,0 100%)}
+.snes-art .art-caption{z-index:1;color:#fff0d0;letter-spacing:.16em}
+.snes-multicart .snes-art{background:linear-gradient(145deg,#593c77,#273d69 60%,#162d43)}
+.snes-multicart .snes-symbol{color:#d5ffad;border-color:#d5ffad88;text-shadow:0 0 19px #cbff9b}
+.snes-multicart .snes-shapes{background:#385a69}.snes-multicart .snes-shapes:after{background:#203747}
+.snes-pizza .snes-art{background:linear-gradient(150deg,#e9904a,#ba4e3c 55%,#5c3544)}
+.snes-pizza .snes-symbol{background:#ffd477;color:#a74333;border:5px solid #fff0b3;font-size:46px;box-shadow:0 8px 30px #531e3155}
+.snes-pizza .snes-shapes{background:#a94b3b}.snes-pizza .snes-shapes:after{background:#673543}
+.snes-jacks .snes-art{background:linear-gradient(145deg,#1d6655,#174438 56%,#142e30)}
+.snes-jacks .snes-symbol{color:#fff4e0;border:0;border-radius:10px;background:#f1e5ce;box-shadow:12px 10px 0 #c6d8ca;transform:rotate(10deg);color:#ad3440}
+.snes-jacks .snes-shapes{background:#247353}.snes-jacks .snes-shapes:after{background:#184a40}
+.snes-bandit .snes-art{background:linear-gradient(180deg,#243857,#566c83 52%,#b47959)}
+.snes-bandit .snes-symbol{color:#ffd489;border-color:#ffd48999;text-shadow:0 0 25px #ffb46b}
+.snes-bandit .snes-shapes{background:#3b4850;clip-path:polygon(0 25%,12% 25%,12% 3%,23% 3%,23% 30%,37% 30%,37% 0,49% 0,49% 25%,67% 25%,67% 7%,79% 7%,79% 28%,100% 28%,100% 100%,0 100%)}
+.snes-bandit .snes-shapes:after{background:#27313a}
+
+.title-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s;image-rendering:pixelated;z-index:4}
+.title-shot.is-ready{opacity:1}
+
+/* In-code (HTML) games */
+.code-tag{position:absolute;z-index:2;top:12px;left:14px;padding:4px 7px;border:1px solid #fff6;background:#0007;color:#fff4d8;font:500 8px var(--mono);letter-spacing:.18em}
+.code-liberty .snes-art{background:linear-gradient(180deg,#1c3a45,#2f6b6a 48%,#d58d52)}
+.code-liberty .snes-symbol{color:#ffe3a8;border-color:#ffe3a899;font-size:40px;text-shadow:0 0 24px #ffb86b}
+.code-liberty .snes-shapes{background:#17262c;clip-path:polygon(0 38%,8% 38%,8% 20%,19% 20%,19% 44%,31% 44%,31% 8%,44% 8%,44% 36%,58% 36%,58% 24%,72% 24%,72% 46%,86% 46%,86% 16%,100% 16%,100% 100%,0 100%)}.code-liberty .snes-shapes:after{background:#0e181c}
+.code-lantern .snes-art{background:linear-gradient(180deg,#14201d,#2d4a3b 55%,#6f8a4e)}
+.code-lantern .snes-symbol{color:#ffd77a;border-color:#ffd77a99;text-shadow:0 0 28px #ffc24a}
+.code-lantern .snes-shapes{background:#142a22}.code-lantern .snes-shapes:after{background:#0c1c16}
+.code-lastlight .snes-art{background:linear-gradient(180deg,#0b0f1d,#2a2f55 55%,#6a5a7c)}
+.code-lastlight .snes-symbol{color:#fff0b8;border-color:#fff0b899;text-shadow:0 0 30px #ffe58a}
+.code-lastlight .snes-shapes{background:#161a30}.code-lastlight .snes-shapes:after{background:#0b0e1c}
+.code-river .snes-art{background:linear-gradient(180deg,#2d5a68,#4c8a85 52%,#9a7f55)}
+.code-river .snes-symbol{color:#f0e9d6;border-color:#f0e9d699;text-shadow:0 0 24px #cfe9e0}
+.code-river .snes-shapes{background:#2b4f57;clip-path:polygon(0 55%,15% 48%,32% 56%,50% 47%,68% 57%,85% 49%,100% 55%,100% 100%,0 100%)}.code-river .snes-shapes:after{background:#1d363d}
+.code-something .snes-art{background:linear-gradient(145deg,#2c1f4a,#5b2d63 55%,#a24a5a)}
+.code-something .snes-symbol{color:#fff;border-color:#fff8;font-size:54px}
+.code-something .snes-shapes{background:#3b2557}.code-something .snes-shapes:after{background:#26173b}
+.player-view.code{width:min(100%,1200px)}
+.player-view.code #game-container{aspect-ratio:auto;height:calc(100vh - 190px);height:calc(100svh - 190px);min-height:420px;max-height:none}
+.player-view.code .controller{display:none}
+@media(max-width:620px){.player-view.code #game-container{height:calc(100svh - 150px);min-height:360px}}
+
+/* Title screens captured from the actual ROMs */
+.title-shot{object-fit:contain;background:#050605}
+
+/* Featured card + section order */
+.game-card.featured{grid-column:1/-1}
+.game-card.featured .card-art{height:clamp(260px,46vw,430px)}
+.game-card.featured .game-title{font-size:22px}
+.game-card.featured .card-info{min-height:96px;padding:20px 24px}
+.game-card.featured .code-tag{font-size:10px;padding:5px 9px}
+.game-card.featured .snes-symbol{display:none}
+@media(max-width:620px){.game-card.featured .card-art{height:clamp(200px,60vw,300px)}.game-card.featured .game-title{font-size:17px}.game-card.featured .card-info{min-height:80px;padding:14px 14px}}

@@ -4,27 +4,79 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
   <meta name="theme-color" content="#10130f">
-  <title>SNES Shelf</title>
+  <title>Cartridge Shelf</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
   <main class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#library" aria-label="SNES Shelf home"><span class="brand-mark">S</span><span>SNES <b>SHELF</b></span></a>
-      <span class="system-label"><i></i> 16-BIT LIBRARY</span>
+      <a class="brand" href="#library" aria-label="Cartridge Shelf home"><span class="brand-mark">C</span><span>CARTRIDGE <b>SHELF</b></span></a>
+      <span class="system-label"><i></i> 16-BIT + 32-BIT + IN-CODE LIBRARY</span>
     </header>
 
     <section id="library" class="library-view">
-      <div class="intro"><div class="eyebrow">YOUR CARTRIDGES <span>·</span> 02</div><h1>Pick a game.</h1></div>
+      <div class="intro"><div class="eyebrow">YOUR CARTRIDGES <span>·</span> 15</div><h1>Pick a game.</h1></div>
       <div class="game-grid">
-        <button class="game-card woods" data-rom="uploads/Lantern_Woods_plus_Harvest_Moon.sfc" data-title="Lantern Woods + Harvest Moon" aria-label="Play Lantern Woods plus Harvest Moon">
-          <span class="card-art art-woods"><span class="moon"></span><span class="tree tree-a"></span><span class="tree tree-b"></span><span class="path"></span><span class="pixel-star star-a">✦</span><span class="pixel-star star-b">✦</span><span class="art-caption">LANTERN<br>WOODS</span></span>
+        <button class="game-card code-something featured" data-html="games/play-something/index.html" data-shot="shots/html_play-something.png" data-title="Play Something" aria-label="Play Play Something">
+          <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_play-something.png" alt="" aria-hidden="true"><span class="snes-symbol">♣</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">PLAY<br>SOMETHING</span></span>
+          <span class="card-info"><span class="game-title">Play Something</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card code-river" data-html="games/river-bandit/index.html" data-shot="shots/html_river-bandit.png" data-title="River Bandit" aria-label="Play River Bandit">
+          <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_river-bandit.png" alt="" aria-hidden="true"><span class="snes-symbol">R</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">RIVER<br>BANDIT</span></span>
+          <span class="card-info"><span class="game-title">River Bandit</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card code-lantern" data-html="games/lantern-woods/index.html" data-shot="shots/html_lantern-woods.png" data-title="Lantern Woods" aria-label="Play Lantern Woods">
+          <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_lantern-woods.png" alt="" aria-hidden="true"><span class="snes-symbol">✦</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">LANTERN<br>WOODS</span></span>
+          <span class="card-info"><span class="game-title">Lantern Woods</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card code-lastlight" data-html="games/last-light/index.html" data-shot="shots/html_last-light.png" data-title="Lantern Woods: The Last Light" aria-label="Play Lantern Woods: The Last Light">
+          <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_last-light.png" alt="" aria-hidden="true"><span class="snes-symbol">☾</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">THE LAST<br>LIGHT</span></span>
+          <span class="card-info"><span class="game-title">Lantern Woods: The Last Light</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card code-liberty" data-html="games/liberty-95/index.html" data-shot="shots/html_liberty-95.png" data-title="Liberty ’95" aria-label="Play Liberty ’95">
+          <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_liberty-95.png" alt="" aria-hidden="true"><span class="snes-symbol">95</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">LIBERTY<br>’95</span></span>
+          <span class="card-info"><span class="game-title">Liberty ’95</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card gba-wildhaven" data-rom="uploads/Wildhaven_beta.gba" data-shot="shots/Wildhaven_beta.png" data-system="gba" data-title="Wildhaven" aria-label="Play Wildhaven">
+          <span class="card-art gba-art"><img src="shots/Wildhaven_beta.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="gba-sun"></span><span class="gba-hills"></span><span class="gba-emblem">W</span><span class="art-caption">WILDHAVEN</span></span>
+          <span class="card-info"><span class="game-title">Wildhaven</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card gba-wildwood" data-rom="uploads/Wildwood_beta.gba" data-shot="shots/Wildwood_beta.png" data-system="gba" data-title="Wildwood" aria-label="Play Wildwood">
+          <span class="card-art gba-art"><img src="shots/Wildwood_beta.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="gba-sun"></span><span class="gba-hills"></span><span class="gba-emblem">✦</span><span class="art-caption">WILDWOOD</span></span>
+          <span class="card-info"><span class="game-title">Wildwood</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card gba-hour" data-rom="uploads/GBA_BORROWED_HOUR.gba" data-shot="shots/GBA_BORROWED_HOUR.png" data-system="gba" data-title="Borrowed Hour" aria-label="Play Borrowed Hour">
+          <span class="card-art gba-art"><img src="shots/GBA_BORROWED_HOUR.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="gba-sun"></span><span class="gba-hills"></span><span class="gba-emblem">↻</span><span class="art-caption">BORROWED<br>HOUR</span></span>
+          <span class="card-info"><span class="game-title">Borrowed Hour</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card gba-golf" data-rom="uploads/GBA_golf_solitaire.gba" data-shot="shots/GBA_golf_solitaire.png" data-system="gba" data-title="Golf Solitaire" aria-label="Play Golf Solitaire">
+          <span class="card-art gba-art"><img src="shots/GBA_golf_solitaire.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="gba-sun"></span><span class="gba-hills"></span><span class="gba-emblem">♠</span><span class="art-caption">GOLF<br>SOLITAIRE</span></span>
+          <span class="card-info"><span class="game-title">Golf Solitaire</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card woods" data-rom="uploads/Lantern_Woods_plus_Harvest_Moon.sfc" data-shot="shots/Lantern_Woods_plus_Harvest_Moon.png" data-title="Lantern Woods + Harvest Moon" aria-label="Play Lantern Woods plus Harvest Moon">
+          <span class="card-art art-woods"><img src="shots/Lantern_Woods_plus_Harvest_Moon.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="moon"></span><span class="tree tree-a"></span><span class="tree tree-b"></span><span class="path"></span><span class="pixel-star star-a">✦</span><span class="pixel-star star-b">✦</span><span class="art-caption">LANTERN<br>WOODS</span></span>
           <span class="card-info"><span class="game-title">Lantern Woods <span class="plus">+</span><br>Harvest Moon</span><span class="launch">PLAY <span>↗</span></span></span>
         </button>
-        <button class="game-card homebrew" data-rom="uploads/homebrew_bundle.sfc" data-title="Homebrew Bundle" aria-label="Play Homebrew Bundle">
-          <span class="card-art art-homebrew"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="cart">HB</span><span class="art-caption">HOMEBREW<br>BUNDLE</span><span class="pixel-star hb-star">✦</span></span>
+        <button class="game-card homebrew" data-rom="uploads/homebrew_bundle.sfc" data-shot="shots/homebrew_bundle.png" data-title="Homebrew Bundle" aria-label="Play Homebrew Bundle">
+          <span class="card-art art-homebrew"><img src="shots/homebrew_bundle.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="cart">HB</span><span class="art-caption">HOMEBREW<br>BUNDLE</span><span class="pixel-star hb-star">✦</span></span>
           <span class="card-info"><span class="game-title">Homebrew<br>Bundle</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card snes-multicart" data-rom="uploads/SNES_multicart_bravo.sfc" data-shot="shots/SNES_multicart_bravo.png" data-title="Multicart Bravo" aria-label="Play Multicart Bravo">
+          <span class="card-art snes-art"><img src="shots/SNES_multicart_bravo.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="snes-symbol">∞</span><span class="snes-shapes"></span><span class="art-caption">MULTICART<br>BRAVO</span></span>
+          <span class="card-info"><span class="game-title">Multicart Bravo</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card snes-pizza" data-rom="uploads/SNES_Pip_s_Pizza_Panic.sfc" data-shot="shots/SNES_Pip_s_Pizza_Panic.png" data-title="Pip’s Pizza Panic" aria-label="Play Pip’s Pizza Panic">
+          <span class="card-art snes-art"><img src="shots/SNES_Pip_s_Pizza_Panic.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="snes-symbol">✹</span><span class="snes-shapes"></span><span class="art-caption">PIP’S PIZZA<br>PANIC</span></span>
+          <span class="card-info"><span class="game-title">Pip’s Pizza Panic</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card snes-jacks" data-rom="uploads/jacks_or_better.sfc" data-shot="shots/jacks_or_better.png" data-title="Jacks or Better" aria-label="Play Jacks or Better">
+          <span class="card-art snes-art"><img src="shots/jacks_or_better.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="snes-symbol">♠</span><span class="snes-shapes"></span><span class="art-caption">JACKS<br>OR BETTER</span></span>
+          <span class="card-info"><span class="game-title">Jacks or Better</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card snes-bandit" data-rom="uploads/BaysideBandit.sfc" data-shot="shots/BaysideBandit.png" data-title="Bayside Bandit" aria-label="Play Bayside Bandit">
+          <span class="card-art snes-art"><img src="shots/BaysideBandit.png" class="title-shot is-ready" alt="" aria-hidden="true"><span class="snes-symbol">B</span><span class="snes-shapes"></span><span class="art-caption">BAYSIDE<br>BANDIT</span></span>
+          <span class="card-info"><span class="game-title">Bayside Bandit</span><span class="launch">PLAY <span>↗</span></span></span>
         </button>
       </div>
       <div class="bottom-note"><span class="tiny-dot"></span> READY TO PLAY</div>
@@ -32,8 +84,8 @@
 
     <section id="player" class="player-view" hidden>
       <div class="player-bar"><button id="back" class="back-button"><span>←</span> LIBRARY</button><span id="playing-title" class="playing-title"></span><button id="full" class="full-button" aria-label="Fullscreen">⛶</button></div>
-      <div class="screen-frame"><div class="screen-glow"></div><div id="game-container"><div class="starting"><span class="loader"></span><span>WAKING THE CARTRIDGE…</span></div><iframe id="emulator" title="SNES game" allow="autoplay; fullscreen; gamepad"></iframe></div></div>
-      <section class="controller" aria-label="SNES controller">
+      <div class="screen-frame"><div class="screen-glow"></div><div id="game-container"><div class="starting"><span class="loader"></span><span>WAKING THE CARTRIDGE…</span></div><iframe id="emulator" title="Game emulator" allow="autoplay; fullscreen; gamepad"></iframe></div></div>
+      <section class="controller" aria-label="Game controller">
         <div class="shoulders"><button class="shoulder" data-key="q" aria-label="L shoulder"><span>L</span></button><button class="shoulder" data-key="w" aria-label="R shoulder"><span>R</span></button></div>
         <div class="controller-face">
           <div class="dpad" aria-label="Directional pad">
@@ -52,7 +104,7 @@
           </div>
         </div>
       </section>
-      <div class="player-foot"><span><kbd>TOUCH</kbd> HOLD TO PLAY</span><span>SNES · EMULATORJS</span></div>
+      <div class="player-foot"><span><kbd>TOUCH</kbd> HOLD TO PLAY</span><span id="system-type">SNES · EMULATORJS</span></div>
     </section>
   </main>
 </body>
