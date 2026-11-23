@@ -278,13 +278,27 @@ function setImmersive(on) {
   const label = document.querySelector('#immerse');
   if (label) label.textContent = on ? '✕ EXIT FULL SCREEN' : '⛶ FULL SCREEN';
   try {
-    if (on && !document.fullscreenElement && player.requestFullscreen) {
-      const fs = player.requestFullscreen({navigationUI: 'hide'});
+    if (on && !document.fullscreenElement && (player.requestFullscreen || player.webkitRequestFullscreen)) {
+      const fs = player.requestFullscreen ? player.requestFullscreen({navigationUI: 'hide'}) : player.webkitRequestFullscreen();
       if (fs && fs.catch) fs.catch(() => {});
     } else if (!on && was && document.fullscreenElement) {
       document.exitFullscreen();
     }
   } catch (error) { /* fullscreen not allowed here; the page still fills the viewport */ }
   releaseAll();
+  if (on) fullScreenHint();
+}
+// iPhone Safari has no Fullscreen API for web pages, so the browser bars stay unless the shelf is added to the Home Screen.
+function fullScreenHint() {
+  const standalone = window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+  const canFs = !!(player.requestFullscreen || player.webkitRequestFullscreen);
+  let note = '';
+  if (!standalone && !canFs) note = 'For true full screen on iPhone: tap Share, then Add to Home Screen, and open the shelf from there.';
+  else if (matchMedia('(orientation: portrait)').matches) note = 'Turn your phone sideways for a bigger picture.';
+  if (!note) return;
+  let t = document.querySelector('#fs-hint');
+  if (!t) { t = document.createElement('div'); t.id = 'fs-hint'; document.body.appendChild(t); }
+  t.textContent = note; t.hidden = false; clearTimeout(t._h); t._h = setTimeout(() => t.hidden = true, 5000);
+  t.onclick = () => t.hidden = true;
 }
 document.querySelector('#immerse').addEventListener('click', () => setImmersive(!player.classList.contains('immersive')));

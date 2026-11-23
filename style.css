@@ -141,7 +141,7 @@
   .player-view:not(.code) .dl-button{margin:0 0 0 auto;padding:5px 8px;font-size:9px}
   .player-view:not(.code) .screen-frame{grid-area:screen;align-self:center;justify-self:center;width:auto;margin:0;padding:8px 12px}
   .player-view:not(.code) .screen-frame:before{inset:8px 12px}
-  .player-view:not(.code) #game-container{height:calc(100svh - 74px);max-height:calc(100svh - 74px);width:auto}
+  .player-view:not(.code) #game-container{height:calc(100vh - 74px);height:calc(100svh - 74px);max-height:calc(100vh - 74px);max-height:calc(100svh - 74px);width:auto}
   .player-view:not(.code) .controller,.player-view:not(.code) .controller-face,.player-view:not(.code) .shoulders{display:contents}
   .player-view:not(.code) .controller:before{display:none}
   .player-view:not(.code) .controller{background:none;border:0;box-shadow:none;padding:0;margin:0;width:auto}
@@ -157,7 +157,7 @@
 }
 @media(orientation:landscape) and (max-height:400px){
   .player-view:not(.code) .dpad,.player-view:not(.code) .face-buttons{transform:scale(.78)}
-  .player-view:not(.code) #game-container{height:calc(100svh - 62px);max-height:calc(100svh - 62px)}
+  .player-view:not(.code) #game-container{height:calc(100vh - 62px);height:calc(100svh - 62px);max-height:calc(100svh - 62px)}
 }
 
 /* handheld fixes */
@@ -256,3 +256,12 @@ body.immersive-playing{overflow:hidden;overscroll-behavior:none}
 @media(orientation:landscape) and (max-height:420px){
   .player-view.immersive:not(.code) .dpad,.player-view.immersive:not(.code) .face-buttons{bottom:calc(max(14px,env(safe-area-inset-bottom)) + 8px)}
 }
+
+/* iPhone: picture fills the whole screen in both orientations; pad floats over it */
+@media(orientation:portrait){
+  .player-view.immersive:not(.code) #game-container{inset:0;height:auto}
+  .player-view.immersive:not(.code) #game-container #emulator{width:100%;height:100%}
+}
+.player-view.immersive:not(.code){height:100vh;height:100dvh;width:100vw;touch-action:none;-webkit-user-select:none;user-select:none}
+body.immersive-playing{position:fixed;inset:0;width:100%;overflow:hidden}
+#fs-hint{position:fixed;left:50%;top:calc(max(8px,env(safe-area-inset-top)) + 44px);transform:translateX(-50%);z-index:90;max-width:88vw;padding:10px 14px;border:1px solid #c5e87a;border-radius:10px;background:#0b0d0af0;color:#f0eee5;font:11px/1.45 "DM Mono",monospace;letter-spacing:.04em;text-align:center}
