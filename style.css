@@ -89,3 +89,16 @@
 .game-card.featured .code-tag{font-size:10px;padding:5px 9px}
 .game-card.featured .snes-symbol{display:none}
 @media(max-width:620px){.game-card.featured .card-art{height:clamp(200px,60vw,300px)}.game-card.featured .game-title{font-size:17px}.game-card.featured .card-info{min-height:80px;padding:14px 14px}}
+
+/* Download */
+.dl-button{margin-left:auto;margin-right:10px;padding:8px 12px;border:1px solid var(--lime,#c5e87a);background:transparent;color:var(--lime,#c5e87a);font:500 10px var(--mono,"DM Mono",monospace);letter-spacing:.16em;cursor:pointer}
+.dl-button:hover{background:var(--lime,#c5e87a);color:#0b0d0a}
+.dl-button[disabled]{opacity:.5;cursor:wait}
+.player-bar .playing-title{margin:0 auto}
+.card-info{position:relative}
+.dl-chip{display:inline-grid;place-items:center;width:26px;height:26px;margin-right:10px;border:1px solid #c5e87a88;color:#c5e87a;font-size:13px;line-height:1;cursor:pointer}
+.dl-chip:hover,.dl-chip:focus-visible{background:#c5e87a;color:#0b0d0a;outline:none}
+.launch{display:inline-flex;align-items:center}
+#dl-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99;max-width:90vw;padding:12px 16px;background:#191d17;border:1px solid #c5e87a;color:#f0eee5;font:12px/1.4 "DM Mono",monospace;letter-spacing:.05em;text-align:center}
+@media(max-width:620px){.dl-button{padding:7px 8px;margin-right:6px;letter-spacing:.08em;font-size:9px}}
+.dl-chip{margin-left:auto}

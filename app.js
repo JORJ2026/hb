@@ -175,3 +175,59 @@ document.querySelectorAll('[data-key]').forEach(button => {
   button.addEventListener('lostpointercapture', finish);
 });
 window.addEventListener('blur', releaseAll);
+
+// Download: ROMs and single-file games save directly; multi-file games are zipped in the browser.
+function toast(text) {
+  let t = document.querySelector('#dl-toast');
+  if (!t) { t = document.createElement('div'); t.id = 'dl-toast'; document.body.appendChild(t); }
+  t.textContent = text; t.hidden = false; clearTimeout(t._h); t._h = setTimeout(() => t.hidden = true, 4500);
+}
+function saveBlob(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+function loadJsZip() {
+  if (window.JSZip) return Promise.resolve(window.JSZip);
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'vendor/jszip.min.js';
+    s.onload = () => resolve(window.JSZip); s.onerror = () => reject(new Error('zip library unavailable'));
+    document.head.appendChild(s);
+  });
+}
+async function downloadGame(card) {
+  if (!card) return;
+  try {
+    if (card.dataset.rom) {
+      const res = await fetch(card.dataset.rom); if (!res.ok) throw new Error('ROM not found');
+      return saveBlob(await res.blob(), card.dataset.rom.split('/').pop());
+    }
+    const dir = card.dataset.html.replace(/index\.html$/, '');
+    const slug = dir.replace(/\/$/, '').split('/').pop();
+    const manifest = await fetch(dir + 'manifest.json');
+    if (!manifest.ok) {
+      const res = await fetch(card.dataset.html); if (!res.ok) throw new Error('file not found');
+      return saveBlob(await res.blob(), slug + '.html');
+    }
+    toast('Packing ' + card.dataset.title + '…');
+    const files = await manifest.json();
+    const JSZip = await loadJsZip();
+    const zip = new JSZip();
+    for (const f of files) {
+      const res = await fetch(dir + f); if (!res.ok) throw new Error('missing ' + f);
+      zip.file(f, await res.blob());
+    }
+    saveBlob(await zip.generateAsync({type: 'blob', compression: 'STORE'}), slug + '.zip');
+    toast('Downloaded ' + slug + '.zip');
+  } catch (error) {
+    toast('Download failed: ' + error.message + '. Serve the shelf from a web server or use the shelf zip.');
+  }
+}
+document.querySelector('#download').addEventListener('click', () => downloadGame(selectedCard));
+document.querySelectorAll('.dl-chip').forEach(chip => {
+  const run = event => { event.stopPropagation(); event.preventDefault(); downloadGame(chip.closest('.game-card')); };
+  chip.addEventListener('click', run);
+  chip.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') run(event); });
+});
