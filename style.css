@@ -206,3 +206,53 @@ body.code-playing{overflow:hidden}
 .player-view.code .player-bar.collapsed button:not(.hud-toggle){display:none}
 .hud-toggle{display:none}
 .player-view.code .player-bar{top:50%;transform:translateY(-50%)}
+
+/* ===== Full screen emulation mode (ROM games): screen fills the display, pad overlays it ===== */
+.immerse-button{display:none}
+.player-view:not(.code) .immerse-button{display:inline-block;margin:0 8px 0 0;padding:8px 12px;border:1px solid var(--lime,#c5e87a);background:transparent;color:var(--lime,#c5e87a);font:500 10px var(--mono,"DM Mono",monospace);letter-spacing:.16em;cursor:pointer}
+.player-view:not(.code) .immerse-button:hover{background:var(--lime,#c5e87a);color:#0b0d0a}
+.player-view:not(.code):not(.immersive) #full{display:none}
+@media(max-width:620px) and (orientation:portrait){.player-view:not(.code) .immerse-button{padding:7px 8px;margin-right:6px;letter-spacing:.08em;font-size:9px}}
+@media(orientation:landscape) and (max-height:540px){.player-view:not(.code) .immerse-button{margin:0 0 0 auto;padding:5px 8px;font-size:9px}.player-view:not(.code) .dl-button{margin-left:6px}}
+body.immersive-playing{overflow:hidden;overscroll-behavior:none}
+.player-view.immersive:not(.code){position:fixed;inset:0;z-index:50;display:block;width:auto;max-width:none;margin:0;padding:0;background:#000;overflow:hidden}
+.player-view.immersive:not(.code) .screen-frame{position:absolute;inset:0;width:auto;margin:0;padding:0;border:0;border-radius:0;background:#000;box-shadow:none}
+.player-view.immersive:not(.code) .screen-frame:before,.player-view.immersive:not(.code) .player-foot,.player-view.immersive:not(.code) .controller:before,.player-view.immersive:not(.code) .controller-wordmark{display:none}
+.player-view.immersive:not(.code) #game-container{position:absolute;inset:0;width:auto;height:auto;max-height:none;min-height:0;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none;background:#000}
+.player-view.immersive:not(.code) .player-bar{position:fixed;z-index:70;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);margin:0;min-height:0;display:flex;padding:0;background:none;border:0}
+.player-view.immersive:not(.code) .player-bar>*:not(#immerse){display:none}
+.player-view.immersive:not(.code) #immerse{display:inline-block;margin:0;padding:7px 12px;border:1px solid #c5e87a88;border-radius:999px;background:#0b0d0a99;color:#e9ecd9;font-size:9px;opacity:.6}
+.player-view.immersive:not(.code) #immerse:hover,.player-view.immersive:not(.code) #immerse:active{opacity:1;background:#c5e87a;color:#0b0d0a}
+/* pad floats over the picture */
+.player-view.immersive:not(.code) .controller,.player-view.immersive:not(.code) .controller-face,.player-view.immersive:not(.code) .shoulders{display:contents}
+.player-view.immersive:not(.code) .controller{background:none;border:0;box-shadow:none;padding:0;margin:0;width:auto}
+.player-view.immersive:not(.code) .dpad,.player-view.immersive:not(.code) .face-buttons,.player-view.immersive:not(.code) .center-controls,.player-view.immersive:not(.code) .shoulder{position:fixed;z-index:60;margin:0;pointer-events:auto}
+.player-view.immersive:not(.code) .dpad{left:max(14px,env(safe-area-inset-left));bottom:max(26px,env(safe-area-inset-bottom));transform:scale(1.05);transform-origin:left bottom}
+.player-view.immersive:not(.code) .face-buttons{right:max(14px,env(safe-area-inset-right));bottom:max(26px,env(safe-area-inset-bottom));transform:rotate(-22deg) scale(1.05);transform-origin:right bottom}
+.player-view.immersive:not(.code) .center-controls{left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);flex-direction:row;gap:10px}
+.player-view.immersive:not(.code) .system-buttons{transform:none;gap:12px}
+.player-view.immersive:not(.code) .system-buttons button{width:58px;height:20px;font-size:7px}
+.player-view.immersive:not(.code) .shoulder{top:max(10px,env(safe-area-inset-top));width:92px;height:30px;transform:none}
+.player-view.immersive:not(.code) .shoulder:first-child{left:max(12px,env(safe-area-inset-left))}
+.player-view.immersive:not(.code) .shoulder:last-child{right:max(12px,env(safe-area-inset-right));left:auto;transform:none}
+.player-view.immersive:not(.code) .dpad-key,.player-view.immersive:not(.code) .face-button,.player-view.immersive:not(.code) .shoulder,.player-view.immersive:not(.code) .system-buttons button{opacity:.6}
+.player-view.immersive:not(.code) .dpad-key.pressed,.player-view.immersive:not(.code) .face-button.pressed,.player-view.immersive:not(.code) .shoulder.pressed,.player-view.immersive:not(.code) .system-buttons button.pressed{opacity:1}
+/* portrait phones: picture on top, pad on the black area below */
+@media(orientation:portrait){
+  .player-view.immersive:not(.code) #game-container{inset:max(46px,calc(env(safe-area-inset-top) + 40px)) 0 auto 0;height:min(calc(100vw * 0.75),calc(100svh - 330px))}
+  .player-view.immersive:not(.code) .shoulder{top:auto;bottom:calc(max(26px,env(safe-area-inset-bottom)) + 150px)}
+  .player-view.immersive:not(.code) .center-controls{bottom:max(18px,env(safe-area-inset-bottom))}
+}
+@media(orientation:landscape) and (max-height:420px){
+  .player-view.immersive:not(.code) .dpad{transform:scale(.9)}
+  .player-view.immersive:not(.code) .face-buttons{transform:rotate(-22deg) scale(.9)}
+  .player-view.immersive:not(.code) .dpad,.player-view.immersive:not(.code) .face-buttons{bottom:max(16px,env(safe-area-inset-bottom))}
+}
+/* immersive fixes */
+.player-view.immersive:not(.code) .screen-frame,.player-view.immersive:not(.code) #game-container{align-self:stretch;justify-self:stretch}
+.player-view.immersive:not(.code) .dpad{transform-origin:center;bottom:calc(max(26px,env(safe-area-inset-bottom)) + 6px)}
+.player-view.immersive:not(.code) .face-buttons{transform-origin:center;bottom:calc(max(26px,env(safe-area-inset-bottom)) + 14px);right:calc(max(14px,env(safe-area-inset-right)) + 8px)}
+@media(orientation:portrait){.player-view.immersive:not(.code) .center-controls{left:42%}}
+@media(orientation:landscape) and (max-height:420px){
+  .player-view.immersive:not(.code) .dpad,.player-view.immersive:not(.code) .face-buttons{bottom:calc(max(14px,env(safe-area-inset-bottom)) + 8px)}
+}

@@ -49,6 +49,7 @@ function openGame(rom, name, core, card) {
   const isGba = core === 'gba';
   player.classList.remove('code');
   document.body.classList.add('rom-playing');
+  setImmersive(false);
   document.body.classList.remove('code-playing');
   try { if (document.fullscreenElement === player) document.exitFullscreen(); } catch (error) {}
   player.classList.toggle('gba', isGba);
@@ -93,6 +94,7 @@ function openCode(url, name, card) {
   title.textContent = name;
   player.classList.remove('gba');
   document.body.classList.remove('rom-playing');
+  setImmersive(false);
   player.classList.add('code');
   document.body.classList.add('code-playing');
   showHud();
@@ -131,6 +133,7 @@ document.querySelector('#back').addEventListener('click', () => {
   frame.removeAttribute('srcdoc');
   frame.src = 'about:blank';
   player.hidden = true;
+  setImmersive(false);
   player.classList.remove('gba', 'code');
   document.body.classList.remove('rom-playing');
   document.body.classList.remove('code-playing');
@@ -266,3 +269,22 @@ document.querySelector('#hud-toggle').addEventListener('click', () => {
   clearTimeout(hudTimer);
   hud.classList.toggle('collapsed');
 });
+
+// Full screen emulation mode: the picture fills the display and the on-screen pad floats over it.
+function setImmersive(on) {
+  const was = player.classList.contains('immersive');
+  player.classList.toggle('immersive', on);
+  document.body.classList.toggle('immersive-playing', on);
+  const label = document.querySelector('#immerse');
+  if (label) label.textContent = on ? '✕ EXIT FULL SCREEN' : '⛶ FULL SCREEN';
+  try {
+    if (on && !document.fullscreenElement && player.requestFullscreen) {
+      const fs = player.requestFullscreen({navigationUI: 'hide'});
+      if (fs && fs.catch) fs.catch(() => {});
+    } else if (!on && was && document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+  } catch (error) { /* fullscreen not allowed here; the page still fills the viewport */ }
+  releaseAll();
+}
+document.querySelector('#immerse').addEventListener('click', () => setImmersive(!player.classList.contains('immersive')));
