@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#bfe9ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Gran’s Study Time</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="shell">
+  <div id="bar"><button class="back" id="hb" aria-label="Back to Study Time home">🏠</button><b id="bt"></b><span class="rt"><button class="mini" id="mb" aria-label="Mobile view" aria-pressed="false">📱</button><button class="mini" id="cb" aria-label="Collapse header">▲</button></span></div>
+  <button id="tab" aria-label="Show header">🏠 ▼</button>
+  <main id="home">
+    <div class="wrap">
+      <div class="hero" id="hero" role="button" tabindex="0" aria-label="Quack">🦆 ✏️</div>
+      <h1>Gran’s Study Time</h1>
+      <div class="apps">
+        <button class="app math" data-a="math"><span>🔢</span>Gran’s Math Tutor<small>Practice, learn &amp; play games</small></button>
+        <button class="app wordsb" data-a="words"><span>📝</span>Practice<small>Spelling games &amp; quizzes</small></button>
+        <button class="app riverb" data-a="river"><span>🦝</span>Elk River Bandit<small>Run, jump &amp; spell</small></button>
+      </div>
+      <button class="mtoggle" id="mhome" aria-pressed="false">📱 Mobile view: <b>Off</b></button>
+      <p class="mtip" id="mtip" hidden>Tip: in Safari tap Share → Add to Home Screen to play full-screen.</p>
+    </div>
+  </main>
+</div>
+<div class="tag">JORJ2026</div>
+<script src="quack.js"></script>
+<script src="hub.js"></script>
+</body>
+</html>
