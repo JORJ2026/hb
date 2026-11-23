@@ -120,18 +120,32 @@ document.querySelector('#full').addEventListener('click', async () => {
   try { await frame.requestFullscreen(); } catch (error) { console.warn('Fullscreen unavailable', error); }
 });
 
-// EmulatorJS keyboard bindings: arrows, X/Z face buttons, A/S auxiliary, Q/W shoulders.
+// On-screen pad -> EmulatorJS. Libretro button ids: 0 B, 1 Y, 2 Select, 3 Start, 4-7 D-pad, 8 A, 9 X, 10 L, 11 R.
+// Keyboard fallback uses EmulatorJS's default bindings (x=B, z=A, s=Y, a=X, q=L, e=R, v=Select, Enter=Start).
+const PAD = {
+  'Up':[4,'ArrowUp',38], 'Down':[5,'ArrowDown',40], 'Left':[6,'ArrowLeft',37], 'Right':[7,'ArrowRight',39],
+  'Select':[2,'v',86], 'Start':[3,'Enter',13], 'A':[8,'z',90], 'B':[0,'x',88], 'X':[9,'a',65], 'Y':[1,'s',83],
+  'L shoulder':[10,'q',81], 'R shoulder':[11,'e',69]
+};
 const heldPointers = new Map();
-function sendKey(key, type) {
+function sendKey(name, type) {
+  const pad = PAD[name];
+  if (!pad) return;
   try {
+    const win = frame.contentWindow;
     const doc = frame.contentDocument;
-    if (!doc) return;
-    const codes = {ArrowUp:38, ArrowDown:40, ArrowLeft:37, ArrowRight:39, x:88, z:90, s:83, a:65, Enter:13, Shift:16, q:81, w:87};
-    const codeNames = {x:'KeyX', z:'KeyZ', s:'KeyS', a:'KeyA', q:'KeyQ', w:'KeyW'};
-    const event = new KeyboardEvent(type, {key, code:codeNames[key] || key, bubbles:true, cancelable:true, composed:true});
-    Object.defineProperty(event, 'keyCode', {get:() => codes[key] || 0});
-    Object.defineProperty(event, 'which', {get:() => codes[key] || 0});
-    doc.dispatchEvent(event);
+    if (!win || !doc) return;
+    const down = type === 'keydown';
+    const emu = win.EJS_emulator;
+    if (emu && emu.gameManager && typeof emu.gameManager.simulateInput === 'function') {
+      emu.gameManager.simulateInput(0, pad[0], down ? 1 : 0);
+      return;
+    }
+    const [, key, keyCode] = pad;
+    const event = new win.KeyboardEvent(type, {key, code: key.length === 1 ? 'Key' + key.toUpperCase() : key, keyCode, which: keyCode, bubbles:true, cancelable:true, composed:true});
+    Object.defineProperty(event, 'keyCode', {get:() => keyCode});
+    Object.defineProperty(event, 'which', {get:() => keyCode});
+    (doc.querySelector('.ejs_parent') || doc.querySelector('#game') || doc).dispatchEvent(event);
   } catch (error) { /* The cartridge may still be starting. */ }
 }
 function releaseAll() {
@@ -143,7 +157,7 @@ document.querySelectorAll('[data-key]').forEach(button => {
   button.addEventListener('dragstart', event => event.preventDefault());
   button.addEventListener('pointerdown', event => {
     event.preventDefault();
-    const key = button.dataset.key;
+    const key = button.getAttribute('aria-label');
     button.setPointerCapture?.(event.pointerId);
     heldPointers.set(event.pointerId, key);
     button.classList.add('pressed');
