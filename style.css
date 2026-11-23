@@ -102,3 +102,107 @@
 #dl-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99;max-width:90vw;padding:12px 16px;background:#191d17;border:1px solid #c5e87a;color:#f0eee5;font:12px/1.4 "DM Mono",monospace;letter-spacing:.05em;text-align:center}
 @media(max-width:620px){.dl-button{padding:7px 8px;margin-right:6px;letter-spacing:.08em;font-size:9px}}
 .dl-chip{margin-left:auto}
+
+/* ===== Handheld look for ROM games (SNES + GBA): indigo shell, 3:2 screen, GBA-style pad ===== */
+.player-view:not(.code){--shell:#5a4e9e;--shell-hi:#7d70c4;--shell-lo:#3e3470;--shell-edge:#9a8fdc}
+.player-view:not(.code) .screen-frame{padding:clamp(10px,2.6vw,22px) clamp(14px,4vw,40px);border:1px solid var(--shell-edge);border-radius:18px 18px 18px 18px;background:linear-gradient(160deg,#4a3f86,#2e2657 70%);box-shadow:0 18px 40px #0009,inset 0 2px 3px #ffffff40,inset 0 -4px 10px #0006;width:min(100%,760px);margin:0 auto}
+.player-view:not(.code) .screen-frame:before{inset:clamp(10px,2.6vw,22px) clamp(14px,4vw,40px);border-radius:3px}
+.player-view:not(.code) .screen-glow{display:none}
+.player-view:not(.code) #game-container{aspect-ratio:3/2;height:auto;min-height:0;max-height:none;background:#050605;border:3px solid #14102a;border-radius:4px;box-shadow:0 0 0 2px #0006,inset 0 0 18px #000;overflow:hidden}
+.player-view:not(.code) #game-container #emulator{width:100%;height:100%;border:0}
+.player-view:not(.code) .controller{width:min(100%,760px);margin:18px auto 0;border:1px solid var(--shell-edge);background:linear-gradient(155deg,var(--shell-hi) 0%,var(--shell) 55%,var(--shell-lo) 100%);box-shadow:0 14px 28px #0009,inset 0 2px 4px #ffffff55,inset 0 -6px 12px #1b153866;color:#e9e6ff}
+.player-view:not(.code) .controller:before{background:#ffffff55}
+.player-view:not(.code) .shoulder{border-color:#2c2554;background:linear-gradient(#8a7fd0,#5a4e9e);color:#ebe8ff;box-shadow:0 3px 2px #0006,inset 0 1px #ffffff77}
+.player-view:not(.code) .system-buttons button{border-color:#2c2554;background:linear-gradient(#8f8c9c,#625f70);color:#f1efff}
+.player-view:not(.code) .controller-wordmark{color:#d9d4ff;font-style:italic;letter-spacing:.12em}
+.player-view:not(.code) .face-button{border-color:#4b4668;background:linear-gradient(145deg,#d3d1e6,#9b98bd 75%);color:#2e2850;text-shadow:0 1px #ffffff99;box-shadow:0 4px 0 #5c5880,0 5px 6px #0006,inset 0 2px 3px #ffffffaa}
+.player-view:not(.code) .face-button.pressed,.player-view:not(.code) .shoulder.pressed{filter:brightness(.88)}
+.player-view:not(.code) .controller button{-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;user-select:none}
+
+/* Phones in portrait: bigger, thumb-sized pad under a full-width screen */
+@media(max-width:620px) and (orientation:portrait){
+  .player-view:not(.code) .screen-frame{border-radius:14px;padding:10px 12px}
+  .player-view:not(.code) .screen-frame:before{inset:10px 12px}
+  .player-view:not(.code) .controller{margin-top:26px;padding:34px 12px 22px}
+  .player-view:not(.code) .dpad,.player-view:not(.code) .face-buttons{transform:scale(1.08)}
+  .player-view:not(.code) .shoulder{width:104px;height:30px}
+}
+
+/* Phones in landscape: true handheld layout, pad on both sides of the screen */
+@media(orientation:landscape) and (max-height:540px){
+  body.rom-playing .topbar,body.rom-playing .bottom-note{display:none}
+  body.rom-playing .app-shell{padding:0;max-width:none}
+  .player-view:not(.code){position:fixed;inset:0;z-index:20;width:auto;max-width:none;margin:0;padding:max(6px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:auto 1fr auto;grid-template-areas:"l bar r" "dpad screen face" "dpad sys face";column-gap:8px;background:radial-gradient(ellipse at 50% 40%,#6a5db4,#3e3470 75%);overflow:hidden}
+  .player-view:not(.code)[hidden]{display:none}
+  .player-view:not(.code) .player-bar{grid-area:bar;margin:0;min-height:0;gap:6px}
+  .player-view:not(.code) .playing-title{display:none}
+  .player-view:not(.code) .back-button,.player-view:not(.code) .full-button{color:#e9e6ff}
+  .player-view:not(.code) .full-button{font-size:20px;padding:0 0 0 6px}
+  .player-view:not(.code) .dl-button{margin:0 0 0 auto;padding:5px 8px;font-size:9px}
+  .player-view:not(.code) .screen-frame{grid-area:screen;align-self:center;justify-self:center;width:auto;margin:0;padding:8px 12px}
+  .player-view:not(.code) .screen-frame:before{inset:8px 12px}
+  .player-view:not(.code) #game-container{height:calc(100svh - 74px);max-height:calc(100svh - 74px);width:auto}
+  .player-view:not(.code) .controller,.player-view:not(.code) .controller-face,.player-view:not(.code) .shoulders{display:contents}
+  .player-view:not(.code) .controller:before{display:none}
+  .player-view:not(.code) .controller{background:none;border:0;box-shadow:none;padding:0;margin:0;width:auto}
+  .player-view:not(.code) .shoulder{position:relative;width:min(96px,100%);height:28px;transform:none}
+  .player-view:not(.code) .shoulder:first-child{grid-area:l;justify-self:start;margin-left:6px}
+  .player-view:not(.code) .shoulder:last-child{grid-area:r;justify-self:end;margin-right:6px;transform:none}
+  .player-view:not(.code) .dpad{grid-area:dpad;align-self:center;justify-self:center;transform:scale(.9)}
+  .player-view:not(.code) .face-buttons{grid-area:face;align-self:center;justify-self:center;transform:scale(.9)}
+  .player-view:not(.code) .center-controls{grid-area:sys;flex-direction:row;gap:10px;align-self:end;justify-self:center;margin-top:4px}
+  .player-view:not(.code) .system-buttons{transform:none;gap:12px}
+  .player-view:not(.code) .system-buttons button{width:56px;height:18px;font-size:7px}
+  .player-view:not(.code) .controller-wordmark{display:none}
+}
+@media(orientation:landscape) and (max-height:400px){
+  .player-view:not(.code) .dpad,.player-view:not(.code) .face-buttons{transform:scale(.78)}
+  .player-view:not(.code) #game-container{height:calc(100svh - 62px);max-height:calc(100svh - 62px)}
+}
+
+/* handheld fixes */
+.player-view:not(.code) .face-buttons{background:#2e265744;box-shadow:inset 0 1px 3px #0005;transform:rotate(-22deg)}
+.player-view:not(.code) .dpad{transform:none}
+@media(max-width:620px) and (orientation:portrait){
+  body.rom-playing .topbar,body.rom-playing .bottom-note{display:none}
+  .player-view:not(.code){padding-top:max(10px,env(safe-area-inset-top))}
+  .player-view:not(.code) .dpad{transform:scale(1.02)}
+  .player-view:not(.code) .face-buttons{transform:rotate(-22deg) scale(.98);margin-right:6px}
+  .player-view:not(.code) .controller{overflow:visible}
+}
+@media(orientation:landscape) and (max-height:540px){
+  .player-view:not(.code) #game-container{height:auto;max-height:none;width:min(calc((100svh - 96px) * 1.5),calc(100vw - 300px))}
+  .player-view:not(.code) .dpad{transform:scale(.86)}
+  .player-view:not(.code) .face-buttons{transform:rotate(-22deg) scale(.86)}
+  .player-view:not(.code) .dl-button{font-size:0;padding:5px 9px}
+  .player-view:not(.code) .dl-button:after{content:"↓";font-size:13px;letter-spacing:0}
+}
+@media(orientation:landscape) and (max-height:400px){
+  .player-view:not(.code) #game-container{width:min(calc((100svh - 84px) * 1.5),calc(100vw - 290px))}
+  .player-view:not(.code) .dpad{transform:scale(.76)}
+  .player-view:not(.code) .face-buttons{transform:rotate(-22deg) scale(.76)}
+}
+@media(orientation:landscape) and (max-height:540px){.player-view:not(.code) .player-foot{display:none}}
+@media(max-width:620px) and (orientation:portrait){.player-view:not(.code) .face-buttons{transform:rotate(-22deg) scale(.92);margin-right:14px}}
+
+/* ===== In-code games open full screen ===== */
+body.code-playing{overflow:hidden}
+.player-view.code{position:fixed;inset:0;z-index:40;width:auto;max-width:none;margin:0;padding:0;background:#000;display:block}
+.player-view.code[hidden]{display:none}
+.player-view.code .screen-frame{position:absolute;inset:0;width:auto;margin:0;padding:0;border:0;border-radius:0;background:#000;box-shadow:none}
+.player-view.code .screen-frame:before,.player-view.code .screen-glow,.player-view.code .player-foot{display:none}
+.player-view.code #game-container{position:absolute;inset:0;width:auto;height:auto;min-height:0;max-height:none;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none}
+.player-view.code #emulator{width:100%;height:100%;border:0;background:#000}
+.player-view.code .controller{display:none}
+.player-view.code .player-bar{position:fixed;z-index:60;top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));display:flex;align-items:center;gap:4px;margin:0;min-height:0;padding:4px;border:1px solid #c5e87a66;border-radius:999px;background:#0b0d0acc;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 6px 18px #0008;transition:opacity .2s}
+.player-view.code .player-bar .playing-title{display:none}
+.player-view.code .player-bar button{margin:0;padding:6px 10px;border:0;border-radius:999px;background:transparent;color:#e9ecd9;font:500 10px var(--mono,"DM Mono",monospace);letter-spacing:.12em;cursor:pointer;line-height:1}
+.player-view.code .player-bar button:hover{background:#c5e87a;color:#0b0d0a}
+.player-view.code .player-bar .full-button{font-size:16px;padding:4px 9px}
+.player-view.code .player-bar .dl-button{border:0}
+.player-view.code .player-bar .hud-toggle{display:inline-grid;font-size:15px;width:30px;height:30px;padding:0;place-items:center}
+.player-view.code .player-bar.collapsed{opacity:.45}
+.player-view.code .player-bar.collapsed:hover,.player-view.code .player-bar.collapsed:focus-within{opacity:1}
+.player-view.code .player-bar.collapsed button:not(.hud-toggle){display:none}
+.hud-toggle{display:none}
+.player-view.code .player-bar{top:50%;transform:translateY(-50%)}

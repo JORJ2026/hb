@@ -48,6 +48,9 @@ function openGame(rom, name, core, card) {
   title.textContent = name;
   const isGba = core === 'gba';
   player.classList.remove('code');
+  document.body.classList.add('rom-playing');
+  document.body.classList.remove('code-playing');
+  try { if (document.fullscreenElement === player) document.exitFullscreen(); } catch (error) {}
   player.classList.toggle('gba', isGba);
   wordmark.textContent = isGba ? 'GAME BOY ADVANCE' : 'SUPER NINTENDO';
   systemType.textContent = (isGba ? 'GBA' : 'SNES') + ' · EMULATORJS';
@@ -58,8 +61,20 @@ function openGame(rom, name, core, card) {
   const config = JSON.stringify(gameUrl);
   const gameName = JSON.stringify(name);
   const coreName = JSON.stringify(core);
-  frame.srcdoc = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><style>html,body,#game{margin:0;width:100%;height:100%;overflow:hidden;background:#050605}body{display:flex}#game{width:100%;height:100%}</style></head><body><div id="game"></div><script>window.EJS_player="#game";window.EJS_core='+coreName+';window.EJS_gameUrl='+config+';window.EJS_gameName='+gameName+';window.EJS_pathtodata="https://cdn.emulatorjs.org/stable/data/";window.EJS_startOnLoaded=true;<\/script><script src="https://cdn.emulatorjs.org/stable/data/loader.js"><\/script></body></html>';
+  frame.srcdoc = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><style>html,body,#game{margin:0;width:100%;height:100%;overflow:hidden;background:#050605}body{display:flex}#game{width:100%;height:100%}</style></head><body><div id="game"></div><script>window.EJS_player="#game";window.EJS_core='+coreName+';window.EJS_gameUrl='+config+';window.EJS_gameName='+gameName+';window.EJS_pathtodata="https://cdn.emulatorjs.org/stable/data/";window.EJS_startOnLoaded=true;window.EJS_defaultOptions={"virtual-gamepad":"disabled"};<\/script><script src="https://cdn.emulatorjs.org/stable/data/loader.js"><\/script></body></html>';
   frame.onload = () => {
+    // Belt and braces: if EmulatorJS still starts with its own virtual gamepad on, switch it off once (it stays toggleable in Settings).
+    let tries = 0;
+    const gamepadOff = setInterval(() => {
+      try {
+        const emu = frame.contentWindow.EJS_emulator;
+        if (emu && emu.started && typeof emu.changeSettingOption === 'function') {
+          clearInterval(gamepadOff);
+          if (emu.getSettingValue && emu.getSettingValue('virtual-gamepad') === 'enabled') emu.changeSettingOption('virtual-gamepad', 'disabled');
+        }
+      } catch (error) { /* not ready yet */ }
+      if (++tries > 40 || session !== captureSession) clearInterval(gamepadOff);
+    }, 500);
     setTimeout(() => starting.style.display = 'none', 5500);
     setTimeout(() => {
       if (session !== captureSession || player.hidden) return;
@@ -77,7 +92,11 @@ function openCode(url, name, card) {
   clearInterval(captureTimer);
   title.textContent = name;
   player.classList.remove('gba');
+  document.body.classList.remove('rom-playing');
   player.classList.add('code');
+  document.body.classList.add('code-playing');
+  showHud();
+  try { const fs = player.requestFullscreen && player.requestFullscreen(); if (fs && fs.catch) fs.catch(() => {}); } catch (error) { /* fullscreen not allowed here; the page is still full-viewport */ }
   systemType.textContent = 'IN-CODE · HTML5';
   library.hidden = true;
   player.hidden = false;
@@ -113,11 +132,14 @@ document.querySelector('#back').addEventListener('click', () => {
   frame.src = 'about:blank';
   player.hidden = true;
   player.classList.remove('gba', 'code');
+  document.body.classList.remove('rom-playing');
+  document.body.classList.remove('code-playing');
+  try { if (document.fullscreenElement) document.exitFullscreen(); } catch (error) {}
   library.hidden = false;
 });
 
 document.querySelector('#full').addEventListener('click', async () => {
-  try { await frame.requestFullscreen(); } catch (error) { console.warn('Fullscreen unavailable', error); }
+  try { if (document.fullscreenElement) return await document.exitFullscreen(); await (player.classList.contains('code') ? player : frame).requestFullscreen(); } catch (error) { console.warn('Fullscreen unavailable', error); }
 });
 
 // On-screen pad -> EmulatorJS. Libretro button ids: 0 B, 1 Y, 2 Select, 3 Start, 4-7 D-pad, 8 A, 9 X, 10 L, 11 R.
@@ -230,4 +252,17 @@ document.querySelectorAll('.dl-chip').forEach(chip => {
   const run = event => { event.stopPropagation(); event.preventDefault(); downloadGame(chip.closest('.game-card')); };
   chip.addEventListener('click', run);
   chip.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') run(event); });
+});
+
+// Floating controls for full-screen in-code games: open for a few seconds, then collapse to a small handle.
+const hud = document.querySelector('.player-bar');
+let hudTimer = null;
+function showHud() {
+  hud.classList.remove('collapsed');
+  clearTimeout(hudTimer);
+  hudTimer = setTimeout(() => hud.classList.add('collapsed'), 3500);
+}
+document.querySelector('#hud-toggle').addEventListener('click', () => {
+  clearTimeout(hudTimer);
+  hud.classList.toggle('collapsed');
 });
