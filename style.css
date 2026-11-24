@@ -265,3 +265,17 @@ body.immersive-playing{overflow:hidden;overscroll-behavior:none}
 .player-view.immersive:not(.code){height:100vh;height:100dvh;width:100vw;touch-action:none;-webkit-user-select:none;user-select:none}
 body.immersive-playing{position:fixed;inset:0;width:100%;overflow:hidden}
 #fs-hint{position:fixed;left:50%;top:calc(max(8px,env(safe-area-inset-top)) + 44px);transform:translateX(-50%);z-index:90;max-width:88vw;padding:10px 14px;border:1px solid #c5e87a;border-radius:10px;background:#0b0d0af0;color:#f0eee5;font:11px/1.45 "DM Mono",monospace;letter-spacing:.04em;text-align:center}
+
+/* Wildroot */
+.code-wildroot .snes-art{background:linear-gradient(180deg,#0f1a10,#1f3a1c 55%,#4a6a2a)}
+.code-wildroot .snes-symbol{color:#f4d27a;border-color:#f4d27a99;text-shadow:0 0 26px #e8b84a}
+.code-wildroot .snes-shapes{background:#13230f}.code-wildroot .snes-shapes:after{background:#0b160a}
+.guide-chip{display:inline-grid;place-items:center;height:26px;padding:0 8px;margin-right:8px;border:1px solid #c5e87a88;color:#c5e87a;font:500 9px "DM Mono",monospace;letter-spacing:.14em;cursor:pointer}
+.guide-chip:hover,.guide-chip:focus-visible{background:#c5e87a;color:#0b0d0a;outline:none}
+.guide-chip+.guide-chip{margin-left:-2px}
+.dl-chip+.guide-chip{margin-left:0}
+.hud-guide{display:none}
+.player-view.code.has-guide .player-bar .hud-guide{display:inline-block}
+.player-view.code .player-bar.collapsed .hud-guide{display:none}
+.player-view.code .player-bar a.hud-guide{padding:6px 10px;border-radius:999px;color:#e9ecd9;font:500 10px "DM Mono",monospace;letter-spacing:.12em;text-decoration:none;line-height:1}
+.player-view.code .player-bar a.hud-guide:hover{background:#c5e87a;color:#0b0d0a}

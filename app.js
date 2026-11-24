@@ -97,6 +97,7 @@ function openCode(url, name, card) {
   setImmersive(false);
   player.classList.add('code');
   document.body.classList.add('code-playing');
+  setGuide(card.dataset.guide);
   showHud();
   try { const fs = player.requestFullscreen && player.requestFullscreen(); if (fs && fs.catch) fs.catch(() => {}); } catch (error) { /* fullscreen not allowed here; the page is still full-viewport */ }
   systemType.textContent = 'IN-CODE · HTML5';
@@ -134,6 +135,7 @@ document.querySelector('#back').addEventListener('click', () => {
   frame.src = 'about:blank';
   player.hidden = true;
   setImmersive(false);
+  player.classList.remove('has-guide');
   player.classList.remove('gba', 'code');
   document.body.classList.remove('rom-playing');
   document.body.classList.remove('code-playing');
@@ -302,3 +304,21 @@ function fullScreenHint() {
   t.onclick = () => t.hidden = true;
 }
 document.querySelector('#immerse').addEventListener('click', () => setImmersive(!player.classList.contains('immersive')));
+
+// Player guide links (view or download) for games that ship a PDF guide.
+function openLink(href, download) {
+  const a = document.createElement('a');
+  a.href = href; a.target = '_blank'; a.rel = 'noopener';
+  if (download) { a.download = href.split('/').pop(); a.removeAttribute('target'); }
+  document.body.appendChild(a); a.click(); a.remove();
+}
+function setGuide(href) {
+  player.classList.toggle('has-guide', !!href);
+  const view = document.querySelector('#guide-view'), dl = document.querySelector('#guide-dl');
+  if (href) { view.href = href; dl.href = href; dl.setAttribute('download', href.split('/').pop()); }
+}
+document.querySelectorAll('.guide-chip').forEach(chip => {
+  const run = event => { event.stopPropagation(); event.preventDefault(); openLink(chip.dataset.href, !!chip.dataset.download); };
+  chip.addEventListener('click', run);
+  chip.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') run(event); });
+});

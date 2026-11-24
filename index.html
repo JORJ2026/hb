@@ -16,7 +16,7 @@
     </header>
 
     <section id="library" class="library-view">
-      <div class="intro"><div class="eyebrow">YOUR CARTRIDGES <span>·</span> 15</div><h1>Pick a game.</h1></div>
+      <div class="intro"><div class="eyebrow">YOUR CARTRIDGES <span>·</span> 16</div><h1>Pick a game.</h1></div>
       <div class="game-grid">
         <button class="game-card code-something featured" data-html="games/play-something/index.html" data-shot="shots/html_play-something.png" data-title="Play Something" aria-label="Play Play Something">
           <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_play-something.png" alt="" aria-hidden="true"><span class="snes-symbol">♣</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">PLAY<br>SOMETHING</span></span>
@@ -25,6 +25,10 @@
         <button class="game-card code-river" data-html="games/river-bandit/index.html" data-shot="shots/html_river-bandit.png" data-title="River Bandit" aria-label="Play River Bandit">
           <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_river-bandit.png" alt="" aria-hidden="true"><span class="snes-symbol">R</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">RIVER<br>BANDIT</span></span>
           <span class="card-info"><span class="game-title">River Bandit</span><span class="dl-chip" role="button" tabindex="0" aria-label="Download" title="Download">↓</span><span class="launch">PLAY <span>↗</span></span></span>
+        </button>
+        <button class="game-card code-wildroot" data-html="games/wildroot/index.html" data-shot="shots/html_wildroot.png" data-guide="games/wildroot/Wildroot_Player_Guide_v3.5.pdf" data-title="Wildroot" aria-label="Play Wildroot">
+          <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_wildroot.png" alt=""><span class="snes-symbol">W</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">WILDROOT</span></span>
+          <span class="card-info"><span class="game-title">Wildroot</span><span class="dl-chip" role="button" tabindex="0" aria-label="Download" title="Download game">↓</span><span class="guide-chip" role="link" tabindex="0" data-href="games/wildroot/Wildroot_Player_Guide_v3.5.pdf" title="Open the player guide (PDF)">GUIDE</span><span class="guide-chip" role="link" tabindex="0" data-href="games/wildroot/Wildroot_Player_Guide_v3.5.pdf" data-download="1" title="Download the player guide (PDF)">PDF ↓</span><span class="launch">PLAY <span>↗</span></span></span>
         </button>
         <button class="game-card code-lantern" data-html="games/lantern-woods/index.html" data-shot="shots/html_lantern-woods.png" data-title="Lantern Woods" aria-label="Play Lantern Woods">
           <span class="card-art snes-art"><img class="title-shot is-ready" src="shots/html_lantern-woods.png" alt="" aria-hidden="true"><span class="snes-symbol">✦</span><span class="snes-shapes"></span><span class="code-tag">IN-CODE</span><span class="art-caption">LANTERN<br>WOODS</span></span>
@@ -83,7 +87,7 @@
     </section>
 
     <section id="player" class="player-view" hidden>
-      <div class="player-bar"><button id="hud-toggle" class="hud-toggle" aria-label="Show or hide controls">⋯</button><button id="back" class="back-button"><span>←</span> LIBRARY</button><span id="playing-title" class="playing-title"></span><button id="immerse" class="immerse-button" aria-label="Full screen emulation mode">⛶ FULL SCREEN</button><button id="download" class="dl-button" aria-label="Download this game">↓ DOWNLOAD</button><button id="full" class="full-button" aria-label="Fullscreen">⛶</button></div>
+      <div class="player-bar"><button id="hud-toggle" class="hud-toggle" aria-label="Show or hide controls">⋯</button><a id="guide-view" class="hud-guide" href="#" target="_blank" rel="noopener">GUIDE</a><a id="guide-dl" class="hud-guide" href="#" download>GUIDE ↓</a><button id="back" class="back-button"><span>←</span> LIBRARY</button><span id="playing-title" class="playing-title"></span><button id="immerse" class="immerse-button" aria-label="Full screen emulation mode">⛶ FULL SCREEN</button><button id="download" class="dl-button" aria-label="Download this game">↓ DOWNLOAD</button><button id="full" class="full-button" aria-label="Fullscreen">⛶</button></div>
       <div class="screen-frame"><div class="screen-glow"></div><div id="game-container"><div class="starting"><span class="loader"></span><span>WAKING THE CARTRIDGE…</span></div><iframe id="emulator" title="Game emulator" allow="autoplay; fullscreen; gamepad"></iframe></div></div>
       <section class="controller" aria-label="Game controller">
         <div class="shoulders"><button class="shoulder" data-key="q" aria-label="L shoulder"><span>L</span></button><button class="shoulder" data-key="w" aria-label="R shoulder"><span>R</span></button></div>
